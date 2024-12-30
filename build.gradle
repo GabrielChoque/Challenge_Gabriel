@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.mc4'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://mc4-767586246561.d.codeartifact.us-east-1.amazonaws.com/maven/Commons/'
+        credentials {
+            username "aws"
+            password "eyJ2ZXIiOjEsImlzdSI6MTczNTU3MTI3MCwiZW5jIjoiQTEyOEdDTSIsInRhZyI6ImFlYUJBUVRGS3NDaGhYN2N2S3hSa3ciLCJleHAiOjE3MzU2MTQ0NzAsImFsZyI6IkExMjhHQ01LVyIsIml2Ijoic3FjNi15MUpFMVJfaVVBbyJ9.t9FAkcpwmyqImkMqpEFgag.MLMqo0pL3QeOvonY.LBT3CVx1yBUhK8rXUanwwNm-wjK6euwH8VDzkRCMPfox7Oz_QO2l4V1fjd3HMPT5f-84hklFWmnrYY2htobf6J-9qmkdnbjh0UuM8azsBxomSNrODUb6LDxpNd1yzmAKmwHfoxB2GZEuDKnSUVeEdapPu3zGZfC7p_Mh23sdB6uz0chFCa6HUe4bHfts_yh2C5_CfgVXp4i8hJ7_IYEaGRp9cZVl0wgjzBIzH00QsjMlfJJ3D56vx0yH7_G4MVDvVS1MyiXBrMKLugyDPqsQr7EFhrtbtE2FR17rBCzCO53GymnIbdSDCvYs4ajquHfB_F9S04mY6DRJJoI9ubLmuiuUYWLawWwek-Qly_GgHkhJzA6uu_Fy-sFUGMdqDHw-tG86uVy-POULmlpeRVqVX11ewF7ShCaPL83F5ZYMxcCZDDaNleuILCxtuR2EutxO0PCvGPcAKcA13T1BtzTWCNqHK-qUbr0ilOEZD6Vy-a7sm4U-ExSxyRYezXY9Zt14HkdBfXUTV6TW-bvk7rHsmXqRyUukIin7Jw7EJuY15PK25d0FivCeQejzbrp2gtvLRuP4vs0WP2Y53BUjh3nkare6stMyepsLc5i7Je5ZY5E6FqLTIzwUvY3oDf4fj1HJiiK9uJb5OFna-BevX5h3jUOC8hGunxuKDM0-TpSw9sHwaI9TvCSW92oEslK8Zsx3ZCP4UpabflUyPrPdCvQCWmMnARjj7FgsAf3CRInzsrZ7s03iIOi6raCpJWJI7r9FeRGxge90A8YJOndwAkxtJTbK1zjp6hiPx0Kh7aI8ZWCqBpkndFEHSwXOvAg5uwe6IrvIh3Kbg5v1HbtpINgT28wR6io96mZ5zuHthkAVwrXlkCPy3pd_TZlygiCvblp2nWcJdXyacI-KOr9DEn6zuPiWmV9mE2VVU2lZMOaA29VHTFnrjUMxMwTUhSiLjs2WKFGdYf5TCaCs_tGFCz8uVzjtti3cy6aNFDsMIP8_gEDs1Ds.l5LddR64aI8Ck_2RHJwO7Q"
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.mc4.commons.base:commons-base-jpa:1.0.0-SNAPSHOT'
+    implementation 'org.modelmapper:modelmapper:3.2.2'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
