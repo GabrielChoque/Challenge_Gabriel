@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListByFilterUseCaseImpl implements ListByFilterUseCase {
     private final ModelMapper modelMapper;
-    private final PricesService pricesService;
     private final PricesRepository pricesRepository;
     @Override
     public List<PricesModel> execute(Date startDate, Short productId, String curr) {

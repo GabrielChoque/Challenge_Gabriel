@@ -6,6 +6,7 @@ import com.mc4.training.application.usecases.PricesCrudUseCase;
 import com.mc4.training.domain.model.PricesModel;
 import com.mc4.training.infraestructure.web.controllers.dto.request.PricesRequestDto;
 import com.mc4.training.infraestructure.web.controllers.dto.response.PricesResponseDto;
+import com.mc4.training.infraestructure.web.controllers.dto.response.PricesResponseFilterDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,12 +28,12 @@ public class PricesController extends BaseController<Short, PricesModel, PricesR
     }
 
     @GetMapping("/filter")
-    public List<PricesResponseDto> findByDateFilter(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") ZonedDateTime startDate,
-                                                    @RequestParam("productId") Short productId,
-                                                    @RequestParam("curr") String curr){
-        System.out.println(startDate);
+    public List<PricesResponseFilterDto> findByDateFilter(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") ZonedDateTime startDate,
+                                                          @RequestParam("productId") Short productId,
+                                                          @RequestParam("curr") String curr){
+
         return listByFilterUseCase.execute(Date.from(startDate.toInstant()), productId, curr)
-                .stream().map(prices -> modelMapper.map(prices, PricesResponseDto.class)).toList();
+                .stream().map(prices -> modelMapper.map(prices, PricesResponseFilterDto.class)).toList();
 
     }
 }
