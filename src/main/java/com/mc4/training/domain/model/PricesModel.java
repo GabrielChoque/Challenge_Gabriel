@@ -2,14 +2,14 @@ package com.mc4.training.domain.model;
 
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 public class PricesModel {
     private Short id;
     private Short brandId;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private Integer priceList;
     private Short productId;
     private Integer priority;
